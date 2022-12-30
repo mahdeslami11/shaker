@@ -218,6 +218,9 @@ for other languages. Finally, we are also interested in extending this general i
 sound’ to a more general problem of generating audio stylistically from a sequence of token inputs
 (this could be MIDI inputs for music or similar).
 
-
+3- change surce code
+import torch, torchaudio
+import requests
+import IPython.display as display
 
 
