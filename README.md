@@ -187,6 +187,37 @@ The purpose of this project is to eliminate noise on the spectrum
 
 2-Describe innovation
 
+Table 2: Comparison of loss scores for model variations
+Model Variation L1 (Train) L1 (Validation) Guided Attention (Validation)
+M1 Standard attention, CE loss 0.0288 0.0611 27.5 × 10−4
+M2 M1 + guided attention 0.0249 0.0484 3.99 × 10−4
+M3 M2 + local char encodings 0.0245 0.0485 4.19 × 10−4
+M4 M1 + positional encodings 0.0230 0.0490 8.42 × 10−4
+M5 M4 without CE loss 0.0235 0.0490 17 × 10−4
+cially in a language like English where the same characters are spoken many different ways this is
+not trivial. We observe a simple visualization of the learned character embeddings L in Fig. 3 with
+some interesting behavior from the model. We could potentially analyze further by examining the
+output encodings produced by TextEnc, and seeing how these change for words like ”car” and ”cat”.
+Figure 3: Visualization of implicitly-learned character embeddings. Characters tend to cluster based
+on their semantics, as well as those with similar sound. We notice an interesting separation of
+characters with non-vocalized sounds (percussive sounds like ”sh” ”th” etc. that don’t engage our
+voice)
+5 Conclusion and Future Work
+In conclusion, an interesting learning from this project has been an appreciation of the sheer power
+and flexibility of deep learning models to learn alignments, character-phoneme relationships, char-
+acter embeddings, and an audio language model simultaneously. While we used a larger amount of
+cloud compute credits due to the various experiments we ran - given our training times it is quite
+possible to build a model with decent prosody, voice and pronunciation in under $75 using our code.
+We plan to try to extend this model to learning different languages to get a better estimate of the
+above. It is possible to improve quality by constraining the attention at inference as in [9]. Also, we
+would like to experiment with two semi-supervised methods for a better initialization of the character
+embeddings L and weights of AudioEnc and AudioDec. This could be done via Word2Vec-like
+embeddings for L, and separately training the audio language model (see Section 4.2.1) on audio
+without labeled transcripts. This could be useful when labeled transcripts might not be as abundant
+for other languages. Finally, we are also interested in extending this general idea of ’symbols-to-
+sound’ to a more general problem of generating audio stylistically from a sequence of token inputs
+(this could be MIDI inputs for music or similar).
+
 
 
 
